@@ -3,7 +3,7 @@
     <div>
       <Logo />
       <h1 class="title">
-        portfolio
+        ogiportfolio
       </h1>
       <div class="links">
         <a
