@@ -1,73 +1,78 @@
-<template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        ogiportfolio
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+  .container
+    h2.name 
+      span HINA ADACHI PORTFOIO
+    .center
+      .center_inner
+        IndexItem
+        Lines
 </template>
 
 <script>
-export default {}
+import IndexItem from "~/components/IndexItem.vue";
+import Lines from "~/components/Lines.vue";
+
+export default {
+  data() {
+    return {
+      DOM: {}
+    };
+  },
+  components: {
+    IndexItem,
+    Lines
+  },
+  mounted() {
+    const DOM = this.DOM;
+    DOM.center = document.querySelector(".center");
+    DOM.inner = document.querySelector(".center_inner");
+    DOM.name = document.querySelector(".name");
+    const height = DOM.center.clientHeight;
+    DOM.inner.style.width = height + "px";
+    DOM.name.style.width = (window.innerWidth - height) / 2 + "px";
+    DOM.name.style.fontSize = ((height * 0.3125) / 2) * 0.5625 + "px";
+  }
+};
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
+<style lang="scss">
+.name {
   display: flex;
-  justify-content: center;
   align-items: center;
-  text-align: center;
+  height: calc(#{$center-height} * 0.3125);
+  background: rgba(#000, 0.5);
+  position: absolute;
+  left: 0;
+  top: calc((100% - #{$center-height}) / 2);
+  span {
+    font-family: $font-en;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 0.05em;
+    line-height: 1.15;
+    padding: 0 0.5625em;
+    position: relative;
+    z-index: 100;
+    mix-blend-mode: exclusion;
+  }
 }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+.center {
+  @at-root {
+    & {
+      width: 100%;
+      height: $center-height;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .center_inner {
+      width: 0;
+      height: 100%;
+      margin: 0 auto;
+      position: relative;
+    }
+  }
 }
 </style>

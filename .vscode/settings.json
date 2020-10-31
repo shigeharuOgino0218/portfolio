@@ -1,0 +1,6 @@
+{
+  "emmet.includeLanguages": {
+    "vue": "jade",
+    "vue-html": "jade",
+  }
+}
